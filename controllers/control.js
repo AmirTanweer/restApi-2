@@ -3,15 +3,22 @@
 
 const Product= require("../models/models")
 const getAllProducts=  async (req,res)=>{
-     
-        const myData=await Product.find();      // using mongoose inbuilt functions to receive data from atlas 
-                                               // database
+     const {company}=req.query;
+     const queryObject={};
+     if(company){
+        queryObject.company=company;
+           console.log(queryObject.company)
+     }
+        const myData=await Product.find(queryObject);      // using mongoose inbuilt functions to receive data from 
+                                                         // atlas database
         
         res.status(200).json({myData});    //  this will return json file in dom
-        // res.status(200).send("hello")                  // this will return string in dom
+        
 };
 const getAllProductsTesting=  async (req,res)=>{
-        const myData=await Product.find({name:"iphone"});   //find function help for searching
+        const myData=await Product.find(req.query);   //find function help for searching
+         console.log("req.query -> ",req.query);
+         
         res.status(200).json({myData})  
 };
 
