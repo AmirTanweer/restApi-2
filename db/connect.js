@@ -2,11 +2,10 @@
 
 const mongoose=require('mongoose')
 
-const uri="mongodb+srv://admin:admin123@cluster1.sjwiw8r.mongodb.net/admin?retryWrites=true&w=majority" //url from 
-                                                                //mongodb Atlas to connect with nodejs 
 
 
-const connectDB=()=>{                     
+
+const connectDB=(uri)=>{                 // now the uri is coming from app.js    
     console.log("connect db")
     return mongoose.connect(uri,{       
         useNewUrlParser: true,         //it is important to use
