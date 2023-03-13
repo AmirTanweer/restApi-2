@@ -3,8 +3,9 @@
 
 
 const express=require('express');   // importing express
-const app=express();                   // assigning app ans express server
-const PORT=process.env.PORT || 5000         
+const app=express();                   // assigning app as express server
+const PORT=process.env.PORT || 5000 
+const connectDB=require('./db/connect')        
 
 
 const routes=require('./routes/routes')         //importing routes from routes.js
@@ -22,6 +23,7 @@ app.use("/myapi",routes);         // setting middle routes like /myapi  and call
 
 const start= async ()=>{              // start function asynchronous
     try{
+        await connectDB();            // await is used because connectDB returns promises
         app.listen(PORT,()=>{            // listening is important as it initiate express server
           console.log(  `Successfully connected in Port ${PORT} `);
         })
